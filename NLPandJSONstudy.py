@@ -3,11 +3,6 @@
 # sys.path.append('/')
 from .Weights import *
 # import linecache
-######################################### this one has no pos tags
-from .verbdict99 import *
-################################## this one has pos tags
-from .verbdict_pos import *
-# from . import weights
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk import pos_tag
 from nltk.corpus import wordnet
@@ -1446,38 +1441,6 @@ def joinsentenceslooped(message, section='body'):
         #         return line
         # else:
         #     return findme
-def verbLemmaOrExpand(findme, lemmatize=False):
-    """ input is one word, once a pos tag directs
-        flow to a verb, if we are lemmatizing, it gets the lemma str,
-        if we are searching, we get all verb forms and return a list.
-
-        verb dict needs to look like this: (verbs in a row, then [1] is the pos tags)
-        list1 = ['thing', 'jehosefat', 'bike', ['_nnn', '_ggg', '_vvv']]
-    """
-    dictionary = verbdictionary()
-    for line in dictionary:
-        if findme in line:
-            if lemmatize == True:
-                return line[0]
-            else:
-                return line
-
-    return findme
-
-def verbGetPosTag(findme):
-    """ input is one word, once a pos tag directs
-        flow to a verb, if we are lemmatizing, it gets the lemma str,
-        if we are searching, we get all verb forms and return a list.
-
-        verb dict needs to look like this: (verbs in a row, then [1] is the pos tags)
-        list1 = ['thing', 'jehosefat', 'bike', ['_nnn', '_ggg', '_vvv']]
-    """
-    dictionary = verbdictionary()
-    for line in dictionary:
-        if findme in line:
-            return line[-1][line.index(findme)]
-
-    return '---'
 
 
 def getngrams(body, n=2, filterchars=True, filterstops=False):
